@@ -18,19 +18,19 @@ function getComputerChoice(){
 function playRound(playerSelection, computerSelection){
     //playerSelection is set to lowercase
     let playerMove = playerSelection.toLowerCase();
-    if (playerMove != "rock" || playerMove != "paper" || playerMove != "scissors"){
-        return `Invalid player move "${playerMove}"`;
+    if (!(playerMove == "rock") && !(playerMove == "paper") && !(playerMove == "scissors")){
+        return "invalid";
     }
     if (playerMove == computerSelection){
-        return `It's a draw! You and the computer both picked ${playerSelection}`;
+        return "draw";
     }
     else if ((playerMove == "paper" && computerSelection == "rock") ||
              (playerMove == "rock" && computerSelection == "scissors") ||
              (playerMove == "scissors" && computerSelection == "paper")){
-                return `You won! ${playerMove} beats ${computerSelection}`;
+                return "win";
              }
     else{
-        return `You lose! ${computerSelection} beats ${playerMove}`;
+        return "loss";
     }
 }
 
@@ -40,6 +40,30 @@ function game(){
     let roundCount = 0;
     
     while (++roundCount < 6){
-        
+        console.log(`Current score: \nPlayer ${playerWin}\nComputer: ${computerWin}\n`)
+        let playerChoice = prompt("Will you play Rock, Paper, or Scissors?")
+        let computerChoice = getComputerChoice();
+        let outcome = playRound(playerChoice, computerChoice);
+        if (outcome == "invalid"){
+            console.log(`Player picked an invalid choice "${playerChoice}", try again!\n`);
+            roundCount--;
+        }
+        else if (outcome == "draw"){
+            console.log(`It's a draw! Both players picked ${playerChoice}.\n`)
+        }
+        else if (outcome == "win"){
+            playerWin++;
+            console.log(`Congratulations, you won with ${playerChoice}! `)
+        }
+        else if (outcome == "loss"){
+            computerWin++;
+            console.log(`Oof, you lost to the opponent's ${computerChoice}`)
+        }
+        else{
+            console.log("Something went wrong, exitting!");
+            return -1;
+        }
     }
+
+    return 0;
 }
