@@ -1,5 +1,5 @@
 function getComputerChoice(){
-    
+    //Computer choice is randomly generated
     let choice = (Math.floor(Math.random()*100) % 3) + 1;
     if (choice === 1){
         return "rock";
@@ -16,29 +16,40 @@ function getComputerChoice(){
 }
 
 function playRound(playerSelection, computerSelection){
-    //playerSelection is set to lowercase
+    //playerSelection is set to lowercase for equality testing
     let playerMove = playerSelection.toLowerCase();
+    //If the player move isn't either rock paper or scissors, it's considered an invalid play
     if (!(playerMove == "rock") && !(playerMove == "paper") && !(playerMove == "scissors")){
         return "invalid";
     }
     if (playerMove == computerSelection){
         return "draw";
     }
+    //This is the Rock Paper Scissors logic. Rock beats scissors, scissors beats paper, paper beats rock.
     else if ((playerMove == "paper" && computerSelection == "rock") ||
              (playerMove == "rock" && computerSelection == "scissors") ||
              (playerMove == "scissors" && computerSelection == "paper")){
                 return "win";
              }
+    //This should only happen in cases where the player makes a valid move, the opponent doesn't make
+    //the same move, and the player's move wasn't a winning move. I can't see an edge case here that needs
+    //to be accounted for.
     else{
         return "loss";
     }
 }
 
 function game(){
+    //Initialize win counts for player and computer, round count to 0
     let playerWin = 0;
     let computerWin = 0;
     let roundCount = 0;
     
+    //States current standings and prompts player for their move
+    //The game goes for 5 rounds total unless an invalid move is made by the player
+    //If player picks an invalid move, the player is asked to try again and round count is decremented
+    //If the player and computer pick the same move, the match continues but round isn't decremented
+    //If either the player or computer wins, their respective win counts get incremented
     while (++roundCount < 6){
         console.log(`Current score: \nPlayer ${playerWin}\nComputer: ${computerWin}\n`)
         let playerChoice = prompt("Will you play Rock, Paper, or Scissors?")
