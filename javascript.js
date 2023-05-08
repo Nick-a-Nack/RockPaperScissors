@@ -64,6 +64,19 @@ function game(){
             return -1;
         }
     }
+    if (playerWin > computerWin){
+        alert(`Congratulations, you won the game! \nPlayer ${playerWin} Computer ${computerWin}`);
+        return 0;
+    }
+    else if (playerWin == computerWin){
+        alert(`It's a draw! You and the computer are both losers! \nPlayer ${playerWin} Computer ${computerWin}`);
+        return 0;
+    }
+    else{
+        alert(`Welp, better luck next time! The computer won! \nPlayer ${playerWin} Computer ${computerWin}`);
+        
+        return 0;
+    }
 
     return 0;
 }
