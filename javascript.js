@@ -15,11 +15,19 @@ function getComputerChoice(){
     }
 }
 
+function isValid(choice){
+    if (choice == "rock" || choice == "paper" || choice == "scissors"){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
 function playRound(playerSelection, computerSelection){
     //playerSelection is set to lowercase for equality testing
     let playerMove = playerSelection.toLowerCase();
-    //If the player move isn't either rock paper or scissors, it's considered an invalid play
-    if (!(playerMove == "rock") && !(playerMove == "paper") && !(playerMove == "scissors")){
+    if (!isValid(playerMove)){
         return "invalid";
     }
     if (playerMove == computerSelection){
