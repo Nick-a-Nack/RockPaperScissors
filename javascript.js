@@ -40,8 +40,7 @@ function playRound(playerSelection, computerSelection){
                 return "win";
              }
     //This should only happen in cases where the player makes a valid move, the opponent doesn't make
-    //the same move, and the player's move wasn't a winning move. I can't see an edge case here that needs
-    //to be accounted for.
+    //the same move, and the player's move wasn't a winning move.
     else{
         return "loss";
     }
@@ -51,14 +50,14 @@ function game(){
     //Initialize win counts for player and computer, round count to 0
     let playerWin = 0;
     let computerWin = 0;
-    let roundCount = 0;
     
     //States current standings and prompts player for their move
     //The game goes for 5 rounds total unless an invalid move is made by the player
     //If player picks an invalid move, the player is asked to try again and round count is decremented
     //If the player and computer pick the same move, the match continues but round isn't decremented
     //If either the player or computer wins, their respective win counts get incremented
-    while (++roundCount < 6){
+    while (playerWin < 5 && computerWin < 5){
+
         console.log(`Current score: \nPlayer ${playerWin}\nComputer: ${computerWin}\n`)
         let playerChoice = prompt("Will you play Rock, Paper, or Scissors?")
         let computerChoice = getComputerChoice();
@@ -83,19 +82,17 @@ function game(){
             return -1;
         }
     }
-    if (playerWin > computerWin){
-        alert(`Congratulations, you won the game! \nPlayer ${playerWin} Computer ${computerWin}`);
-        return 0;
-    }
-    else if (playerWin == computerWin){
-        alert(`It's a draw! You and the computer are both losers! \nPlayer ${playerWin} Computer ${computerWin}`);
-        return 0;
-    }
-    else{
-        alert(`Welp, better luck next time! The computer won! \nPlayer ${playerWin} Computer ${computerWin}`);
         
-        return 0;
+        if (playerWin > computerWin){
+            alert(`Congratulations, you won the game! \nPlayer ${playerWin} Computer ${computerWin}`);
+            return 0;
+        }
+        else{
+            alert(`Welp, better luck next time! The computer won! \nPlayer ${playerWin} Computer ${computerWin}`);
+            
+            return 0;
     }
-
-    return 0;
 }
+
+const rock = document.querySelector(".rock");
+rock.addEventListener('click', playRound("rock", getComputerChoice()));
