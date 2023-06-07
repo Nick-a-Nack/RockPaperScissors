@@ -8,8 +8,19 @@
 
 .gameBoard{
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.playerScore{
+    color: green;
+    font-size: 20px;
+}
+
+.computerScore{
+    color: red;
+    font-size: 20px;
 }
 
 button{ 
