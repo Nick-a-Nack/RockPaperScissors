@@ -27,22 +27,31 @@ function isValid(choice){
 function playRound(playerSelection, computerSelection){
     //playerSelection is set to lowercase for equality testing
     let playerMove = playerSelection.toLowerCase();
-    if (!isValid(playerMove)){
-        return "invalid";
-    }
     if (playerMove == computerSelection){
-        return "draw";
+        document.getElementById("anouncement").textContent = "It's a draw! Try again!";
     }
     //This is the Rock Paper Scissors logic. Rock beats scissors, scissors beats paper, paper beats rock.
     else if ((playerMove == "paper" && computerSelection == "rock") ||
              (playerMove == "rock" && computerSelection == "scissors") ||
              (playerMove == "scissors" && computerSelection == "paper")){
-                return "win";
+                document.getElementById("anouncement").textContent = `Congratulations, ${playerMove} beats ${computerSelection}!`;
+                let temp = parseInt(document.getElementsByClassName("playerScore")[0].textContent);
+                temp++;
+                document.getElementsByClassName("playerScore")[0].textContent = temp;
+                if (temp == 5){
+                    alert("Congratulations, you won the match!");
+                }
              }
     //This should only happen in cases where the player makes a valid move, the opponent doesn't make
     //the same move, and the player's move wasn't a winning move.
     else{
-        return "loss";
+        document.getElementById("anouncement").textContent = `Sorry, ${computerSelection} beats ${playerMove}!`;
+                let temp = parseInt( document.getElementsByClassName("computerScore")[0].textContent);
+                temp++;
+                document.getElementsByClassName("computerScore")[0].textContent = temp;
+                if (temp == 5){
+                    alert("Oof, computer won the match! Maybe next time!");
+                }
     }
 }
 
@@ -58,13 +67,8 @@ function game(){
     //If either the player or computer wins, their respective win counts get incremented
     while (playerWin < 5 && computerWin < 5){
 
-        console.log(`Current score: \nPlayer ${playerWin}\nComputer: ${computerWin}\n`)
-        let playerChoice = prompt("Will you play Rock, Paper, or Scissors?")
-        let computerChoice = getComputerChoice();
-        let outcome = playRound(playerChoice, computerChoice);
         if (outcome == "invalid"){
             console.log(`Player picked an invalid choice "${playerChoice}", try again!\n`);
-            roundCount--;
         }
         else if (outcome == "draw"){
             console.log(`It's a draw! Both players picked ${playerChoice}.\n`)
@@ -94,5 +98,17 @@ function game(){
     }
 }
 
-const rock = document.querySelector(".rock");
-rock.addEventListener('click', playRound("rock", getComputerChoice()));
+const rock = document.querySelector('.rock');
+rock.addEventListener('click', () => {
+    playRound("rock", getComputerChoice())
+});
+
+const paper = document.querySelector('.paper');
+paper.addEventListener('click', () => {
+    playRound("paper", getComputerChoice())
+});
+
+const scissors = document.querySelector('.scissors');
+scissors.addEventListener('click', () => {
+    playRound("scissors", getComputerChoice())
+});

@@ -31,6 +31,10 @@ button{
     border-radius: 5px;
 }
 
+button:hover{
+    border-color: yellow;
+}
+
 img{
     width: 100%;
     height: auto;;
