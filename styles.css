@@ -1,26 +1,45 @@
 .moves{
     display: flex;
+
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: 1px;
+    padding: 50px;
+}
+body{
+    display: flex;
+    flex-direction: column;
 }
 
 .gameBoard{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    color: white;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
+    position: fixed;
+    background-color: black;
+
 }
 
 .playerScore{
     color: green;
-    font-size: 20px;
+    font-size: 32px;
 }
 
 .computerScore{
     color: red;
-    font-size: 20px;
+    font-size: 32px;
+}
+
+#anouncement{
+    font-size:x-large;
 }
 
 button{ 
@@ -29,10 +48,15 @@ button{
     background-color: white;
     border: 7px solid silver;
     border-radius: 5px;
+    pointer-events: auto;
 }
 
 button:hover{
     border-color: yellow;
+}
+
+button:disabled{
+    border-color: silver;
 }
 
 img{

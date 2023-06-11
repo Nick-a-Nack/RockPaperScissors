@@ -40,6 +40,23 @@ function playRound(playerSelection, computerSelection){
                 document.getElementsByClassName("playerScore")[0].textContent = temp;
                 if (temp == 5){
                     alert("Congratulations, you won the match!");
+                    if (confirm("Play again?")){
+                        document.getElementsByClassName("playerScore")[0].textContent = 0;
+                        document.getElementsByClassName("computerScore")[0].textContent = 0;
+                    }
+                    else{
+                        let rock = document.getElementsByClassName("rock")[0];
+                        rock.disabled = true;
+                        rock.removeAttribute("border-color");
+
+                        let paper = document.getElementsByClassName("paper")[0];
+                        paper.disabled = true;
+                        paper.removeAttribute("border-color");
+
+                        let  scissors = document.getElementsByClassName("scissors")[0];
+                        scissors.disabled = true;
+                        scissors.removeAttribute("border-color");
+                    }
                 }
              }
     //This should only happen in cases where the player makes a valid move, the opponent doesn't make
@@ -51,50 +68,24 @@ function playRound(playerSelection, computerSelection){
                 document.getElementsByClassName("computerScore")[0].textContent = temp;
                 if (temp == 5){
                     alert("Oof, computer won the match! Maybe next time!");
+                    if (confirm("Play again?")){
+                        document.getElementsByClassName("playerScore")[0].textContent = 0;
+                        document.getElementsByClassName("computerScore")[0].textContent = 0;
+                    }
+                    else{
+                        let rock = document.getElementsByClassName("rock")[0];
+                        rock.disabled = true;
+                        rock.removeAttribute("border-color");
+
+                        let paper = document.getElementsByClassName("paper")[0];
+                        paper.disabled = true;
+                        paper.removeAttribute("border-color");
+
+                        let  scissors = document.getElementsByClassName("scissors")[0];
+                        scissors.disabled = true;
+                        scissors.removeAttribute("border-color");
+                    }
                 }
-    }
-}
-
-function game(){
-    //Initialize win counts for player and computer, round count to 0
-    let playerWin = 0;
-    let computerWin = 0;
-    
-    //States current standings and prompts player for their move
-    //The game goes for 5 rounds total unless an invalid move is made by the player
-    //If player picks an invalid move, the player is asked to try again and round count is decremented
-    //If the player and computer pick the same move, the match continues but round isn't decremented
-    //If either the player or computer wins, their respective win counts get incremented
-    while (playerWin < 5 && computerWin < 5){
-
-        if (outcome == "invalid"){
-            console.log(`Player picked an invalid choice "${playerChoice}", try again!\n`);
-        }
-        else if (outcome == "draw"){
-            console.log(`It's a draw! Both players picked ${playerChoice}.\n`)
-        }
-        else if (outcome == "win"){
-            playerWin++;
-            console.log(`Congratulations, you won with ${playerChoice}! `)
-        }
-        else if (outcome == "loss"){
-            computerWin++;
-            console.log(`Oof, you lost to the opponent's ${computerChoice}`)
-        }
-        else{
-            console.log("Something went wrong, exitting!");
-            return -1;
-        }
-    }
-        
-        if (playerWin > computerWin){
-            alert(`Congratulations, you won the game! \nPlayer ${playerWin} Computer ${computerWin}`);
-            return 0;
-        }
-        else{
-            alert(`Welp, better luck next time! The computer won! \nPlayer ${playerWin} Computer ${computerWin}`);
-            
-            return 0;
     }
 }
 
